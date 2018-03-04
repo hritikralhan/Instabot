@@ -4,7 +4,6 @@ from pprint import pprint
 from textblob import TextBlob
 from textblob.sentiments import NaiveBayesAnalyzer
 
-
 response = requests.get('https://api.jsonbin.io/b/59d0f30408be13271f7df29c').json()
 APP_ACCESS_TOKEN = response['access_token']
 BASE_URL = 'https://api.instagram.com/v1/'
@@ -19,9 +18,6 @@ def owner_info():
 
     else:
         print " Status code other than 200 received"
-
-
-
 
 def owner_post():
     r = requests.get('%susers/self/media/recent/?access_token=%s' %(BASE_URL , APP_ACCESS_TOKEN)).json()
@@ -100,7 +96,7 @@ def comment_post(uname):
 def delete_comment(uname):
     media_id = get_media_id(uname)
     r = requests.get('%smedia/%s/comments?access_token=%s'  %(BASE_URL,media_id,APP_ACCESS_TOKEN)).json
-    if r ['meta'] ['code']==200:
+    if r ['meta']['code']==200:
         if len (r['data']) > 0 :
             for index in range(0,len(r['data'])):
                 comment_id = r['data'][index]['id']
