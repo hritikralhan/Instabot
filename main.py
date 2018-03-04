@@ -87,8 +87,8 @@ def like_post(uname):
 
 def comment_post(uname):
     media_id = get_media_id(uname)
-    payload = {"access_token": APP_ACCESS_TOKEN,"text":comment}
     comment = raw_input('What is your comment ? ')
+    payload = {"access_token": APP_ACCESS_TOKEN,"text":comment}
     url = BASE_URL + 'media/%s/comments' % (media_id)
     r = requests.post(url, payload).json
     if r['meta']['code'] == 200:
