@@ -107,9 +107,9 @@ def delete_comment(uname):
                     r = requests.delete('%smedia/%s/comments/%s/?access_token=%s' % (
                     BASE_URL, media_id, comment_id, APP_ACCESS_TOKEN)).json()
                     if r['meta']['code'] == 200:
-                        print 'Comment successfully deleted!'
+                        print 'Comment hogya delete delete'
                     else:
-                        print 'Could not delete the comment'
+                        print 'Could ni hua delete'
                 else:
                     print comment_text + 'is a +ve comment'
         else:
