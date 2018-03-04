@@ -144,7 +144,7 @@ def start_bot():
             comment_post(user_name)
         elif query==7:
             user_name = raw_input('What is the username of that user? ')
-            del_comment(user_name)
+            delete_comment(user_name)
         elif query==0:
             show_menu = False
         else:
