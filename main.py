@@ -103,8 +103,19 @@ def delete_comment(uname):
     if r ['meta'] ['code']==200:
         if len (r['data']) > 0 :
             for index in range(0,len(r['data'])):
-                cmnt_id = r['data'][index]['id']
-                cmnt_text = r['data'][index]['text']
+                comment_id = r['data'][index]['id']
+                comment_text = r['data'][index]['text']
+                blob = TextBlob(comment_text, analyzer=NaiveBayesAnalyzer())
+                if blob.sentiment.p_neg > blob.sentiment.p_pos:
+                    print 'Negative comment : %s' % comment_text
+                    r = requests.delete('%smedia/%s/comments/%s/?access_token=%s' % (
+                    BASE_URL, media_id, comment_id, APP_ACCESS_TOKEN)).json()
+                    if r['meta']['code'] == 200:
+                        print 'Comment successfully deleted!'
+                    else:
+                        print 'Could not delete the comment'
+                else:
+                    print comment_text + 'is a positive comment'
         else:
             print 'No Comments found'
     else:
