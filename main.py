@@ -95,7 +95,7 @@ def comment_post(uname):
 
 def delete_comment(uname):
     media_id = get_media_id(uname)
-    r = requests.get('%smedia/%s/comments?access_token=%s'  %(BASE_URL,media_id,APP_ACCESS_TOKEN)).json
+    r = requests.get('%smedia/%s/comments?access_token=%s'  %(BASE_URL,media_id,APP_ACCESS_TOKEN)).json()
     if r ['meta']['code']==200:
         if len (r['data']) > 0 :
             for index in range(0,len(r['data'])):
@@ -111,7 +111,7 @@ def delete_comment(uname):
                     else:
                         print 'Could not delete the comment'
                 else:
-                    print comment_text + 'is a positive comment'
+                    print comment_text + 'is a +ve comment'
         else:
             print 'No Comments found'
     else:
